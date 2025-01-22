@@ -1,155 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Business Card</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .card {
-            width: 100%;
-            max-width: 400px; 
-            height: 220px;
-            background: white;
-            border-radius: 0;
-            padding: 20px;
-            position: relative;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Card</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #ffffff;
+    }
 
-        .blue-stripe {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 70px;
-            height: 100%;
-            background: #003399;
-        }
+    .business-card {
+      width: 600px;
+      height: auto;
+      border: 1px solid #ccc;
+      background-color: #ffffff;
+      padding: 20px;
+    }
 
-        .red-stripe {
-            position: absolute;
-            top: 0;
-            right: 70px;
-            width: 12px;
-            height: 100%;
-            background: #cc0000;
-        }
+    .header {
+      background: #003399;
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .logo {
-            position: absolute;
-            top: 20px;
-            right: 15px;
-            color: white;
-            font-size: 16px;
-            text-align: right;
-            z-index: 2;
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            letter-spacing: 1px;
-        }
+    .header h1 {
+      font-size: 18px;
+      margin: 0;
+    }
 
-        .content {
-            position: relative;
-            z-index: 1;
-            padding-right: 90px;
-            padding-left: 15px;
-        }
+    .header p {
+      font-size: 12px;
+      margin: 0;
+    }
 
-        .address {
-            font-size: 11.5px;
-            color: #000;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
+    .red-line {
+      border: none;
+      height: 5px;
+      background-color: #c00000;
+    }
 
-        .contact {
-            font-size: 11.5px;
-            color: #000;
-            line-height: 1.6;
-        }
+    .content {
+      padding: 10px;
+    }
 
-        .contact a {
-            color: #000;
-            text-decoration: none;
-        }
+    .content h2 {
+      font-size: 16px;
+      color: #003399;
+      margin: 0 0 10px;
+      border-bottom: 2px solid #003399;
+      display: inline-block;
+    }
 
-        .blue-line {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: #003399;
-        }
+    .content p {
+      font-size: 12px;
+      color: #333;
+      margin: 5px 0;
+    }
 
-        .website {
-            margin-top: 3px;
-        }
-    </style>
+    .contact p {
+      font-size: 12px;
+      margin: 5px 0;
+      color: #333;
+    }
+
+    .contact strong {
+      color: #000;
+    }
+  </style>
 </head>
 <body>
-    <div class="card">
-        <div class="blue-line"></div>
-        <div class="blue-stripe"></div>
-        <div class="red-stripe"></div>
-        <div class="logo">
-            US Agriseeds
-        </div>
-        
-        <div class="content">
-            <div class="address">
-                # 8-2-626/2, Road No. 10,<br>
-                Sri Krishna House*, 3rd Floor<br>
-                Banjara Hills, Hyderabad - 500034,<br>
-                Telangana, INDIA
-            </div>
-            
-            <div class="contact">
-                Tel No.: +91 40 2988 3005<br>
-                Tel No.: +91 40 3023 1104<br>
-                Fax No.: +91 40 3023 7844<br>
-                Mobile: 99080 78944<br>
-                Email: mailto:vijay.kumar@seedworks.com<br>
-                <div class="website">Website: www.seedworks.com</div>
-            </div>
-        </div>
+  <div class="business-card">
+    <div class="header">
+      <h1 id="name">Company Name</h1>
+      <p id="emp_designation">Designation</p>
     </div>
-    
-    <script>
-        // Get URL parameters
-        const params = new URLSearchParams(window.location.search);
-        
-        // Update content with parameters if provided
-        if(params.has('address')) {
-            document.querySelector('.address').innerHTML = params.get('address');
-        }
-        if(params.has('company')) {
-            document.querySelector('.logo').textContent = params.get('company');
-        }
-        if(params.has('tel1')) {
-            document.querySelector('.contact').innerHTML = 
-                `Tel No.: ${params.get('tel1')}<br>` +
-                `Tel No.: ${params.get('tel2')}<br>` +
-                `Fax No.: ${params.get('fax')}<br>` +
-                `Mobile: ${params.get('mobile')}<br>` +
-                `Email: ${params.get('email')}<br>` +
-                `<div class="website">Website: ${params.get('website')}</div>`;
-        }
-    </script>
+    <hr class="red-line">
+    <div class="content">
+      <h2 id="emp_name">Employee Name</h2>
+      <p id="area">Area: N/A</p>
+      <p id="city">City: N/A</p>
+      <p id="state">State: N/A</p>
+      <div class="contact">
+        <p><strong>Tel No.:</strong> <span id="mobile_no">N/A</span></p>
+        <p><strong>Fax No.:</strong> <span id="fax_no">N/A</span></p>
+        <p><strong>Email:</strong> <span id="email">N/A</span></p>
+        <p><strong>Website:</strong> <span id="website">N/A</span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Parse query parameters from URL
+    const params = new URLSearchParams(window.location.search);
+
+    // Dynamically populate the business card fields
+    document.getElementById("name").textContent = params.get("name") || "Company Name";
+    document.getElementById("emp_name").textContent = params.get("emp_name") || "Employee Name";
+    document.getElementById("emp_designation").textContent = params.get("emp_designation") || "Designation";
+    document.getElementById("area").textContent = `Area: ${params.get("area") || "N/A"}`;
+    document.getElementById("city").textContent = `City: ${params.get("city") || "N/A"}`;
+    document.getElementById("state").textContent = `State: ${params.get("state") || "N/A"}`;
+    document.getElementById("mobile_no").textContent = params.get("mobile_no") || "N/A";
+    document.getElementById("fax_no").textContent = params.get("fax_no") || "N/A";
+    document.getElementById("email").textContent = params.get("email") || "N/A";
+    document.getElementById("website").textContent = params.get("website") || "N/A";
+  </script>
 </body>
 </html>
