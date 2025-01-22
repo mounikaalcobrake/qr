@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Digital Business Card</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            width: 100%;
+            max-width: 400px;
+            background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .name {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+        }
+        .title {
+            opacity: 0.9;
+            margin: 0 0 20px 0;
+        }
+        .company {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0 0 25px 0;
+        }
+        .contact {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .contact a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            transition: opacity 0.3s;
+        }
+        .contact a:hover {
+            opacity: 0.8;
+        }
+        .design-element {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+            border-radius: 0 0 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo" id="companyInitial"></div>
+        <h1 class="name" id="fullName"></h1>
+        <p class="title" id="jobTitle"></p>
+        <p class="company" id="companyName"></p>
+        <div class="contact">
+            <a href="" id="phoneLink"></a>
+            <a href="" id="emailLink"></a>
+            <a href="" id="websiteLink" target="_blank"></a>
+        </div>
+        <div class="design-element"></div>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const params = new URLSearchParams(window.location.search);
+        
+        // Update card content
+        document.getElementById('fullName').textContent = params.get('name') || '';
+        document.getElementById('jobTitle').textContent = params.get('title') || '';
+        document.getElementById('companyName').textContent = params.get('company') || '';
+        document.getElementById('companyInitial').textContent = (params.get('company') || ' ')[0];
+        
+        const phone = params.get('phone') || '';
+        const email = params.get('email') || '';
+        const website = params.get('website') || '';
+        
+        const phoneLink = document.getElementById('phoneLink');
+        phoneLink.href = `tel:${phone}`;
+        phoneLink.textContent = phone;
+        
+        const emailLink = document.getElementById('emailLink');
+        emailLink.href = `mailto:${email}`;
+        emailLink.textContent = email;
+        
+        const websiteLink = document.getElementById('websiteLink');
+        websiteLink.href = website;
+        websiteLink.textContent = website;
+    </script>
+</body>
+</html>
