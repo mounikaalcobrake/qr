@@ -3,122 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Digital Business Card</title>
+    <title>Business Card</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: Arial, sans-serif;
-            background: #f0f0f0;
+            background: #f5f5f5;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
         }
+        
         .card {
             width: 100%;
-            max-width: 400px;
-            background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
-            border-radius: 15px;
-            padding: 30px;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 400px; 
+            height: 220px;
+            background: white;
+            border-radius: 0;
+            padding: 20px;
             position: relative;
-            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
+
+        .blue-stripe {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 70px;
+            height: 100%;
+            background: #003399;
+        }
+
+        .red-stripe {
+            position: absolute;
+            top: 0;
+            right: 70px;
+            width: 12px;
+            height: 100%;
+            background: #cc0000;
+        }
+
         .logo {
             position: absolute;
             top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .name {
-            font-size: 28px;
-            font-weight: bold;
-            margin: 0 0 5px 0;
-        }
-        .title {
-            opacity: 0.9;
-            margin: 0 0 20px 0;
-        }
-        .company {
-            font-size: 20px;
-            font-weight: 500;
-            margin: 0 0 25px 0;
-        }
-        .contact {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .contact a {
+            right: 15px;
             color: white;
+            font-size: 16px;
+            text-align: right;
+            z-index: 2;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            letter-spacing: 1px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            padding-right: 90px;
+            padding-left: 15px;
+        }
+
+        .address {
+            font-size: 11.5px;
+            color: #000;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .contact {
+            font-size: 11.5px;
+            color: #000;
+            line-height: 1.6;
+        }
+
+        .contact a {
+            color: #000;
             text-decoration: none;
-            display: block;
-            margin: 10px 0;
-            transition: opacity 0.3s;
         }
-        .contact a:hover {
-            opacity: 0.8;
-        }
-        .design-element {
+
+        .blue-line {
             position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.1) 100%);
-            border-radius: 0 0 15px 0;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #003399;
+        }
+
+        .website {
+            margin-top: 3px;
         }
     </style>
 </head>
 <body>
     <div class="card">
-        <div class="logo" id="companyInitial"></div>
-        <h1 class="name" id="fullName"></h1>
-        <p class="title" id="jobTitle"></p>
-        <p class="company" id="companyName"></p>
-        <div class="contact">
-            <a href="" id="phoneLink"></a>
-            <a href="" id="emailLink"></a>
-            <a href="" id="websiteLink" target="_blank"></a>
+        <div class="blue-line"></div>
+        <div class="blue-stripe"></div>
+        <div class="red-stripe"></div>
+        <div class="logo">
+            US Agriseeds
         </div>
-        <div class="design-element"></div>
+        
+        <div class="content">
+            <div class="address">
+                # 8-2-626/2, Road No. 10,<br>
+                Sri Krishna House*, 3rd Floor<br>
+                Banjara Hills, Hyderabad - 500034,<br>
+                Telangana, INDIA
+            </div>
+            
+            <div class="contact">
+                Tel No.: +91 40 2988 3005<br>
+                Tel No.: +91 40 3023 1104<br>
+                Fax No.: +91 40 3023 7844<br>
+                Mobile: 99080 78944<br>
+                Email: mailto:vijay.kumar@seedworks.com<br>
+                <div class="website">Website: www.seedworks.com</div>
+            </div>
+        </div>
     </div>
-
+    
     <script>
         // Get URL parameters
         const params = new URLSearchParams(window.location.search);
         
-        // Update card content
-        document.getElementById('fullName').textContent = params.get('name') || '';
-        document.getElementById('jobTitle').textContent = params.get('title') || '';
-        document.getElementById('companyName').textContent = params.get('company') || '';
-        document.getElementById('companyInitial').textContent = (params.get('company') || ' ')[0];
-        
-        const phone = params.get('phone') || '';
-        const email = params.get('email') || '';
-        const website = params.get('website') || '';
-        
-        const phoneLink = document.getElementById('phoneLink');
-        phoneLink.href = `tel:${phone}`;
-        phoneLink.textContent = phone;
-        
-        const emailLink = document.getElementById('emailLink');
-        emailLink.href = `mailto:${email}`;
-        emailLink.textContent = email;
-        
-        const websiteLink = document.getElementById('websiteLink');
-        websiteLink.href = website;
-        websiteLink.textContent = website;
+        // Update content with parameters if provided
+        if(params.has('address')) {
+            document.querySelector('.address').innerHTML = params.get('address');
+        }
+        if(params.has('company')) {
+            document.querySelector('.logo').textContent = params.get('company');
+        }
+        if(params.has('tel1')) {
+            document.querySelector('.contact').innerHTML = 
+                `Tel No.: ${params.get('tel1')}<br>` +
+                `Tel No.: ${params.get('tel2')}<br>` +
+                `Fax No.: ${params.get('fax')}<br>` +
+                `Mobile: ${params.get('mobile')}<br>` +
+                `Email: ${params.get('email')}<br>` +
+                `<div class="website">Website: ${params.get('website')}</div>`;
+        }
     </script>
 </body>
 </html>
