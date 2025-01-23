@@ -1,118 +1,263 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Business Card</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #ffffff;
-    }
-
-    .business-card {
-      width: 600px;
-      height: auto;
-      border: 1px solid #ccc;
-      background-color: #ffffff;
-      padding: 20px;
-    }
-
-    .header {
-      background: #003399;
-      color: white;
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .header h1 {
-      font-size: 18px;
-      margin: 0;
-    }
-
-    .header p {
-      font-size: 12px;
-      margin: 0;
-    }
-
-    .red-line {
-      border: none;
-      height: 5px;
-      background-color: #c00000;
-    }
-
-    .content {
-      padding: 10px;
-    }
-
-    .content h2 {
-      font-size: 16px;
-      color: #003399;
-      margin: 0 0 10px;
-      border-bottom: 2px solid #003399;
-      display: inline-block;
-    }
-
-    .content p {
-      font-size: 12px;
-      color: #333;
-      margin: 5px 0;
-    }
-
-    .contact p {
-      font-size: 12px;
-      margin: 5px 0;
-      color: #333;
-    }
-
-    .contact strong {
-      color: #000;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Business Card</title>
+    <style>
+       @font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/raleway/v34/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaorCIPrQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/raleway/v34/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVs9pbCIPrQ.ttf) format('truetype');
+}
+.business-card {
+  display: grid;
+  overflow: hidden;
+  position: relative;
+  line-height: 1.6;
+  font-size: 4.5vmin;
+  width:40vmin;
+  height:21vmin;
+  padding: 7vmin;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.4);
+}
+.content {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  font-family: 'Raleway', sans-serif;
+  color: #58242a;
+}
+.top {
+  display: grid;
+  grid-column: 0.33333333;
+  grid-row: 1;
+  align-content: start;
+  grid-gap: 1.5vmin;
+  animation: inLeft;
+  animation-duration: 1s;
+}
+.name {
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1;
+}
+.profession {
+  color: #732d35;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: 700;
+}
+.bottom {
+  display: grid;
+  grid-column: 0.33333333;
+  grid-row: 3;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-content: end;
+}
+.bottom .left {
+  font-weight: 700;
+  font-size: 0.9em;
+  grid-column: 1;
+  animation: inLeft;
+  animation-duration: 1s;
+}
+.bottom .right {
+  grid-column: 3;
+  align-self: end;
+  animation: inRight;
+  animation-duration: 1s;
+}
+.website {
+  color: #732d35;
+  font-weight: 400;
+}
+.location {
+  white-space: nowrap;
+  text-align: right;
+  color: #ee473b;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+.background {
+  z-index: 1;
+  background-color: #FFFFFF;
+  position: absolute;
+  height: 100%;
+  /* width:50%; */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.slice {
+  top:-28px;
+  left: -1vmin;
+  position: absolute;
+  width: 150vmin;
+  height:65px;
+  background:#004d99;
+  /* background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); */
+  /* background: linear-gradient(to right, #ef473a, #cb2d3e); */
+  transform: rotate(-3deg);
+  /* animation: inRotate; */
+  /* animation-duration: 1s; */
+}
+.slice2 {
+  top:39px;
+  /* left: -1vmin; */
+  position: absolute;
+  width: 120vmin;
+  height:5px;
+  background:  #ff0000;
+  /* background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); */
+  /* background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); */
+  /* background: linear-gradient(to right, #ef473a, #cb2d3e); */
+  transform: rotate(-3deg);
+  /* animation: inRotate; */
+  /* animation-duration: 1s; */
+}
+@keyframes inRotate {
+  0% {
+    transform: translateX(-100vmin) rotate(15deg);
+  }
+  100% {
+    transform: translateX(0) rotate(38deg);
+  }
+}
+@keyframes inLeft {
+  0% {
+    transform: translateX(-100vmin);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes inRight {
+  0% {
+    transform: translateX(100vmin);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+html {
+  height: 100%;
+}
+body {
+  background: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+}
+/* Fire */
+/* Water */
+    </style>
 </head>
 <body>
-  <div class="business-card">
-    <div class="header">
-      <h1 id="name">Company Name</h1>
-      <p id="emp_designation">Designation</p>
-    </div>
-    <hr class="red-line">
-    <div class="content">
-      <h2 id="emp_name">Employee Name</h2>
-      <p id="area">Area: N/A</p>
-      <p id="city">City: N/A</p>
-      <p id="state">State: N/A</p>
-      <div class="contact">
-        <p><strong>Tel No.:</strong> <span id="mobile_no">N/A</span></p>
-        <p><strong>Fax No.:</strong> <span id="fax_no">N/A</span></p>
-        <p><strong>Email:</strong> <span id="email">N/A</span></p>
-        <p><strong>Website:</strong> <span id="website">N/A</span></p>
+    <!-- partial:index.partial.html -->
+    <div class='business-card'>
+        <div class="content" style="display: flex; align-items:center; width: 180%;margin-left: -99px; flex-wrap: wrap;margin-top:80px;">
+            <!-- Blue column -->
+            <div style="background-color: #004d99; width: 120px; height:4px; border-radius: 3px;margin:2px;"></div>
+            
+            <!-- Text column -->
+            <p style="font-size: 15px; color: #000; margin:2px; text-align: center;font-weight: bold;">SeedWorks International Pvt. Ltd.</p>
+            
+            <!-- Red column -->
+            <div style="background-color: red; width: 120px; height:4px; border-radius: 3px;margin:2px;"></div>
+          
+            <div class="row" style="display: flex; justify-content: space-around; width:90%">
+                <div class="column" style="flex: 1;">
+                    <p id="address" style="color: #000;font-size:10px;margin-left:60px;margin-top:-1px;font-weight: 700;">N/A<br>N/A,<br><span id="area">N/A</span>,<span id="city">N/A</span>-<span id="pincode">N/A</span>,<br><span id="state">N/A</span>,<span id="country">N/A</span></p>
+                </div>
+                <div class="column" style="flex: 1;">
+                    <p style="color: #000;font-size:10px;margin-left:65px;margin-top:-1px;font-weight: 700;">
+                   <span id="mobile_no"> Tell No : </span> <br> 
+                   <span id="fax_no">Fax No : </span> <br>
+                   <span id="mobile_no"> Mobile :</span> </p>
+                </div>
+              
+              
+            </div>
+            <div class="row" style="display: flex;justify-content: center;align-items: center;margin-top:-12px;" >
+                <p id="email" style="color: #000;font-size: 10px;margin-left:100px;font-weight: 700;">Email: N/A <span style="color: #000;">/</span><span id="website" style="color: #000;font-size:10px;">Website:N/A</span></p>
+            </div>
+        </div>
+        
+        
+      <div class='background'>
+        <div class="slice" style="display: flex;gap: 5px;">
+            <p style="color: #f7f7f7; font-size: 24px; margin-left:250px;margin-top:16px;transform: rotate(2deg); ">
+                <span style="color: #ee473b;">US</span> AgriSeeds
+            </p>
+            <p style="color: #f7f7f7; font-size:9px;margin-left:320px;margin-left:-64px;margin-top:42px;transform: rotate(2deg); ">
+                Seed that Works
+            </p>
+        </div>
+        
+        
+        <div class='slice2'></div>
       </div>
     </div>
-  </div>
-
-  <script>
-    // Parse query parameters from URL
-    const params = new URLSearchParams(window.location.search);
-
-    // Dynamically populate the business card fields
-    document.getElementById("name").textContent = params.get("name") || "Company Name";
-    document.getElementById("emp_name").textContent = params.get("emp_name") || "Employee Name";
-    document.getElementById("emp_designation").textContent = params.get("emp_designation") || "Designation";
-    document.getElementById("area").textContent = `Area: ${params.get("area") || "N/A"}`;
-    document.getElementById("city").textContent = `City: ${params.get("city") || "N/A"}`;
-    document.getElementById("state").textContent = `State: ${params.get("state") || "N/A"}`;
-    document.getElementById("mobile_no").textContent = params.get("mobile_no") || "N/A";
-    document.getElementById("fax_no").textContent = params.get("fax_no") || "N/A";
-    document.getElementById("email").textContent = params.get("email") || "N/A";
-    document.getElementById("website").textContent = params.get("website") || "N/A";
-  </script>
+    <!-- partial -->
+      
+    <!-- </body> -->
+    
+    <!-- <script>
+        // Get URL parameters
+        const params = new URLSearchParams(window.location.search);
+        
+        // Update content with parameters if provided
+        if(params.has('address')) {
+            document.querySelector('.address').innerHTML = params.get('address');
+        }
+        if(params.has('company')) {
+            document.querySelector('.logo').textContent = params.get('company');
+        }
+        if(params.has('tel1')) {
+            document.querySelector('.contact').innerHTML = 
+                `Tel No.: ${params.get('tel1')}<br>` +
+                `Tel No.: ${params.get('tel2')}<br>` +
+                `Fax No.: ${params.get('fax')}<br>` +
+                `Mobile: ${params.get('mobile')}<br>` +
+                `Email: ${params.get('email')}<br>` +
+                `<div class="website">Website: ${params.get('website')}</div>`;
+        }
+    </script> -->
 </body>
+<script>
+    // Get query parameters from the URL
+const urlParams = new URLSearchParams(window.location.search);
+
+// Set the text content of elements based on URL query parameters
+document.getElementById("emp_name").textContent = urlParams.get("emp_name") || "N/A";
+document.getElementById("emp_designation").textContent = urlParams.get("emp_designation") || "N/A";
+document.getElementById("company_name").textContent = urlParams.get("company_name") || "N/A";
+document.getElementById("address").textContent = urlParams.get("address") || "N/A";
+document.getElementById("area").textContent = urlParams.get("area") || "N/A";
+document.getElementById("city").textContent = urlParams.get("city") || "N/A";
+document.getElementById("state").textContent = urlParams.get("state") || "N/A";
+document.getElementById("country").textContent = urlParams.get("country") || "N/A";
+document.getElementById("pincode").textContent = urlParams.get("pincode") || "N/A";
+document.getElementById("website").textContent = urlParams.get("website") || "N/A";
+document.getElementById("mobile_no").textContent = urlParams.get("mobile_no") || "N/A";
+document.getElementById("email").textContent = urlParams.get("email") || "N/A";
+
+// Update footer information as well (optional if IDs are in footer)
+// document.getElementById("footer_email").textContent = urlParams.get("email") || "N/A";
+// document.getElementById("footer_website").textContent = urlParams.get("website") || "N/A";
+
+</script>
 </html>
