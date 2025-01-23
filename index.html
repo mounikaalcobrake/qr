@@ -137,10 +137,10 @@
 <body>
     <div class="business-card">
         <div class="slice" style="display: flex;gap: 5px">
-            <p style="color: #f7f7f7; font-size: 23px; margin-left:245px;margin-top:23px;transform: rotate(2deg); ">
+            <p style="color: #f7f7f7; font-size: 23px; margin-left:245px;transform: rotate(2deg);margin-top:10px; ">
                 <span style="color: #ee473b;">US</span> AgriSeeds
             </p>
-            <p style="color: #f7f7f7; font-size:8px;margin-left:320px;margin-left:-64px;margin-top:51px;transform: rotate(2deg); ">
+            <p style="color: #f7f7f7; font-size:8px;margin-left:-64px;margin-top:51px;transform: rotate(2deg); ">
                 Seed that Works
             </p>
         </div>
@@ -163,9 +163,9 @@
                 </p>
               </div>
               <div class="column" style="margin-right:50px;">
-                <p id="mobile_no">Tell:N/A</p>
-                <p id="mobile_no">Mobile: N/A</p>
-                <p id="fax_no">Fax: N/A</p>
+                <p>Tell:</p><span id="mobile_no"></span></p>
+                <p>Fax:</p><span id="mobile_no"></span></p>
+                <p>Mobile:</p><span id="fax_no"></span></p>
               </div>
             </div>
             
@@ -190,6 +190,7 @@
         document.getElementById("country").textContent = urlParams.get("country") || "N/A";
         document.getElementById("pincode").textContent = urlParams.get("pincode") || "N/A";
         document.getElementById("mobile_no").textContent = urlParams.get("mobile_no") || "N/A";
+        document.getElementById("fax_no").textContent = urlParams.get("fax_no") || "N/A";
         document.getElementById("email").textContent = urlParams.get("email") || "N/A";
         document.getElementById("website").textContent = urlParams.get("website") || "N/A";
     </script>
