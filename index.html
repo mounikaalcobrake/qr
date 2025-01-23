@@ -137,7 +137,7 @@
 <body>
     <div class="business-card">
         <div class="slice" style="display: flex;gap: 5px">
-            <p style="color: #f7f7f7; font-size: 23px; margin-left:225px;transform: rotate(2deg);margin-top:3px; ">
+            <p style="color: #f7f7f7; font-size: 23px; margin-left:210px;transform: rotate(2deg);margin-top:-8px; ">
                 <span style="color: #ee473b;">US</span> AgriSeeds
             </p>
             <p style="color: #f7f7f7; font-size:8px;margin-left:-64px;margin-top:51px;transform: rotate(2deg); ">
@@ -158,14 +158,14 @@
             <div class="row" style="display: flex; justify-content: space-between; gap:15px; width: 100%;">
               <div class="column">
                 <p>
-                  <span id="area"></span>, <span id="city"></span> - <span id="pincode"></span>, <br>
+                  <span  id="address"></span>,<span id="city"></span> - <span id="pincode"></span>, <br>
                   <span id="state"></span>, <span id="country"></span>
                 </p>
               </div>
               <div class="column" style="margin-right:70px;">
-                <p>Tell:</p><span id="mobile_no"></span></p>
-                <p>Fax:</p><span id="mobile_no"></span></p>
-                <p>Mobile:</p><span id="fax_no"></span></p>
+                <p>Tell:<span id="mobile_no" style="color: #000;font-size:10px;"></span></p>
+                <p>Fax:<span id="mobile_no"  style="color: #000;font-size:10px;"></span></p>
+                <p>Mobile:<span id="fax_no"  style="color: #000;font-size:10px;"></span></p>
               </div>
             </div>
             
@@ -184,7 +184,7 @@
 
         // Set the text content of elements based on URL query parameters
         document.getElementById("address").textContent = urlParams.get("address") || "N/A";
-        document.getElementById("area").textContent = urlParams.get("area") || "N/A";
+        // document.getElementById("area").textContent = urlParams.get("area") || "N/A";
         document.getElementById("city").textContent = urlParams.get("city") || "N/A";
         document.getElementById("state").textContent = urlParams.get("state") || "N/A";
         document.getElementById("country").textContent = urlParams.get("country") || "N/A";
