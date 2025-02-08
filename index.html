@@ -306,8 +306,8 @@
 
       .action-buttons {
           display: flex;
-          justify-content: space-between;
-          margin-top: 20px;
+          justify-content: center;
+          margin-top:4px;
       }
       .icon-phone {
     color:#00BFA5; /* Red */
@@ -325,20 +325,30 @@
 }
 
       .action-buttons button {
-          padding: 10px 20px;
-          border: none;
-          border-radius: 8px;
-          font-size: 16px;
-          font-weight: bold;
-          cursor: pointer;
-          transition: background 0.3s ease;
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between text and icon */
+    background: linear-gradient(135deg, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    height: 30;
+    width: 200;
+    border-radius:7px;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
       }
       .action-buttons button.send-to-manager {
           background: #FF9800;
           color: white;
       }
       .action-buttons button.send-to-manager:hover {
-          background: #e68a00;
+        background: linear-gradient(135deg, rgba(37, 117, 252, 0.9), rgba(106, 17, 203, 0.9));
+        transform: scale(1.05);
       }
   </style>
 
@@ -356,11 +366,11 @@
             </div>
         </div>
         <div class="details-section">
-            <div class="contact-item">
+            <div class="contact-item" onclick="openDialer()">
                 <div class="icon icon-phone"><i class="fas fa-phone"></i></div>
                 <span class="contact-label" id="mobile"></span>
             </div>
-            <div class="contact-item"  onclick="openDialer()">
+            <div class="contact-item">
                 <div class="icon icon-email">  <img src="./images//mail.png" alt="Gmail" width="30" height="30"></div>
                 <span class="contact-label2" id="email"></span>
             </div>
@@ -370,7 +380,9 @@
             </div>
         </div>
         <div class="action-buttons">
-            <button class="save" onclick="saveToEmail()">Save</button>
+            <button class="save" onclick="saveToEmail()">
+            Save
+            <i class="fas fa-save"></i></button>
             <!-- <button class="add-to-contacts" onclick="addToContacts()">Add to Contacts</button> -->
         </div>
     </div>
@@ -393,7 +405,7 @@
             const mobileNo = urlParams.get("mobile_no") || "N/A";
             const email = urlParams.get("email") || "N/A";
             const website = urlParams.get("website") || "N/A";
-            const managerEmail = "mounika1996sep@gmail.com";
+            const managerEmail = "masliuddin.mohammad@seedsworks.com";
             const subject = `Contact Details for ${empName}`;
             const body = `
 Name: ${empName}
