@@ -204,8 +204,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital vCard</title>
     <style>
-        /* Styles remain unchanged */
-    </style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Poppins', sans-serif;
+      }
+      body {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          background: linear-gradient(135deg, #667eea, #764ba2);
+      }
+      .vcard-container {
+          width: 380px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 30px;
+          backdrop-filter: blur(25px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          overflow: hidden;
+          box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
+          position: relative;
+      }
+      .header {
+          height: 200px;
+          background: linear-gradient(135deg, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
+          position: relative;
+      }
+      .profile-section {
+          text-align: center;
+          margin-top: -80px;
+          position: relative;
+          z-index: 2;
+      }
+      .profile-image {
+          width: 160px;
+          height: 160px;
+          border-radius: 50%;
+          border: 6px solid rgba(255, 255, 255, 0.7);
+          background: #f0f0f0;
+          object-fit: cover;
+      }
+      .profile-info {
+          margin-top: 25px;
+          color: white;
+      }
+      .profile-info h1 {
+          font-size: 32px;
+          font-weight: 700;
+          margin-bottom: 8px;
+      }
+      .profile-info p {
+          font-size: 18px;
+          color: rgba(255, 255, 255, 0.85);
+      }
+      .details-section {
+          padding: 30px;
+          background: rgba(255, 255, 255, 0.15);
+          border-radius: 25px;
+          margin: 25px;
+      }
+      .contact-item {
+          display: flex;
+          align-items: center;
+          padding: 18px;
+          background: rgba(255, 255, 255, 0.25);
+          border-radius: 18px;
+          margin-bottom: 18px;
+      }
+      .icon {
+          width: 45px;
+          height: 45px;
+          background: rgba(255, 255, 255, 0.35);
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 18px;
+          font-size: 22px;
+          color: white;
+      }
+      .contact-label {
+          font-size: 18px;
+          color: white;
+          font-weight: 500;
+      }
+      .action-buttons {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 20px;
+      }
+      .action-buttons button {
+          padding: 10px 20px;
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: background 0.3s ease;
+      }
+      .action-buttons button.send-to-manager {
+          background: #FF9800;
+          color: white;
+      }
+      .action-buttons button.send-to-manager:hover {
+          background: #e68a00;
+      }
+  </style>
+
 </head>
 <body>
     <div class="vcard-container">
@@ -268,7 +375,7 @@ Email: ${email}
 Website: ${website}
             `.trim().replace(/\n/g, "%0D%0A"); // Encode newlines for email
 
-            const mailtoLink = `mailto:?subject=${encodeURIComponent(managerEmail)}&body=${encodeURIComponent(body)}`;
+            const mailtoLink = `mailto:${encodeURIComponent(managerEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             window.open(mailtoLink, "_blank");
         }
 
@@ -295,6 +402,9 @@ END:VCARD
             a.click();
 
             URL.revokeObjectURL(url); // Clean up the URL object
+            setTimeout(() => {
+                window.location.href = url; // Some devices will prompt to open contacts
+            }, 1000);
         }
     </script>
 </body>
