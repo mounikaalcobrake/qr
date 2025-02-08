@@ -342,7 +342,7 @@
         </div>
         <div class="action-buttons">
             <button class="save" onclick="saveToEmail()">Save</button>
-            <button class="add-to-contacts" onclick="addToContacts()">Add to Contacts</button>
+            <!-- <button class="add-to-contacts" onclick="addToContacts()">Add to Contacts</button> -->
         </div>
     </div>
     <script>
@@ -364,7 +364,7 @@
             const mobileNo = urlParams.get("mobile_no") || "N/A";
             const email = urlParams.get("email") || "N/A";
             const website = urlParams.get("website") || "N/A";
-            const managerEmail = "masliuddin.mohammad@seedsworks.com";
+            const managerEmail = "mounika1996sep@gmail.com";
             const subject = `Contact Details for ${empName}`;
             const body = `
 Name: ${empName}
@@ -373,8 +373,7 @@ Company: ${companyName}
 Mobile: ${mobileNo}
 Email: ${email}
 Website: ${website}
-            `.trim().replace(/\n/g, "%0D%0A"); // Encode newlines for email
-
+            `.trim(); // Encode newlines for email
             const mailtoLink = `mailto:${encodeURIComponent(managerEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             window.open(mailtoLink, "_blank");
         }
