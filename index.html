@@ -204,15 +204,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital vCard</title>
     <style>
-        /* Styles remain unchanged */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        .vcard-container {
+            width: 380px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        .header {
+            height: 200px;
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
+            position: relative;
+        }
+        .profile-section {
+            text-align: center;
+            margin-top: -80px;
+            position: relative;
+            z-index: 2;
+        }
+        .profile-image {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 6px solid rgba(255, 255, 255, 0.7);
+            background: #f0f0f0;
+            object-fit: cover;
+        }
+        .profile-info {
+            margin-top: 25px;
+            color: white;
+        }
+        .profile-info h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .profile-info p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .details-section {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            margin: 25px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 18px;
+            margin-bottom: 18px;
+        }
+        .icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 18px;
+            font-size: 22px;
+            color: white;
+        }
+        .contact-label {
+            font-size: 18px;
+            color: white;
+            font-weight: 500;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .action-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .action-buttons button.save {
+            background: #4CAF50;
+            color: white;
+        }
+        .action-buttons button.save:hover {
+            background: #45a049;
+        }
+        .action-buttons button.add-to-contacts {
+            background: #2196F3;
+            color: white;
+        }
+        .action-buttons button.add-to-contacts:hover {
+            background: #1e88e5;
+        }
     </style>
 </head>
 <body>
     <div class="vcard-container">
         <div class="header"></div>
         <div class="profile-section">
-            <!-- Profile Image with Fallback -->
-            <img id="profile-image" src="" alt="Profile" class="profile-image" onerror="handleImageError(this);">
+            <!-- Static Image from Public Folder -->
+            <img id="profile-image" src="/default.jpg" alt="Profile" class="profile-image">
             <div class="profile-info">
                 <h1 id="name"></h1>
                 <p id="designation"></p>
@@ -233,31 +346,15 @@
                 <span class="contact-label" id="website"></span>
             </div>
         </div>
+        <div class="action-buttons">
+            <button class="save" onclick="saveToEmail()">Save</button>
+            <button class="add-to-contacts" onclick="addToContacts()">Add to Contacts</button>
+        </div>
     </div>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
 
-        // Set profile image dynamically or fallback to default
-        const imageUrl = urlParams.get("image");
-        const profileImage = document.getElementById("profile-image");
-        if (imageUrl) {
-            profileImage.src = imageUrl; // Use the provided image URL
-        } else {
-            profileImage.src = "default.jpg"; // Fallback to the local default image
-        }
-
-        // Handle image errors to prevent infinite loops
-        function handleImageError(imgElement) {
-            // Check if the fallback image has already been set
-            if (!imgElement.dataset.fallbackSet) {
-                imgElement.src = "default.jpg"; // Set fallback image
-                imgElement.dataset.fallbackSet = true; // Mark fallback as set
-            } else {
-                console.error("Fallback image failed to load.");
-            }
-        }
-
-        // Set other fields dynamically
+        // Populate fields dynamically
         document.getElementById("name").textContent = urlParams.get("emp_name") || "N/A";
         document.getElementById("designation").textContent = urlParams.get("emp_designation") || "N/A";
         document.getElementById("company").textContent = urlParams.get("name") || "N/A";
@@ -265,8 +362,60 @@
         document.getElementById("email").textContent = urlParams.get("email") || "N/A";
         document.getElementById("website").textContent = urlParams.get("website") || "N/A";
 
-        // Debugging: Log the image URL
-        console.log("Image URL:", imageUrl);
+        // Function to save details to email
+        function saveToEmail() {
+            const empName = urlParams.get("emp_name") || "N/A";
+            const empDesignation = urlParams.get("emp_designation") || "N/A";
+            const companyName = urlParams.get("name") || "N/A";
+            const mobileNo = urlParams.get("mobile_no") || "N/A";
+            const email = urlParams.get("email") || "N/A";
+            const website = urlParams.get("website") || "N/A";
+
+            const subject = `Contact Details for ${empName}`;
+            const body = `
+                Name: ${empName}
+                Designation: ${empDesignation}
+                Company: ${companyName}
+                Mobile: ${mobileNo}
+                Email: ${email}
+                Website: ${website}
+            `.replace(/\n/g, "%0D%0A"); // Encode newlines for email
+
+            const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.open(mailtoLink, "_blank");
+        }
+
+        // Function to add details to contacts (download vCard)
+        function addToContacts() {
+            const empName = urlParams.get("emp_name") || "N/A";
+            const empDesignation = urlParams.get("emp_designation") || "N/A";
+            const companyName = urlParams.get("name") || "N/A";
+            const mobileNo = urlParams.get("mobile_no") || "N/A";
+            const email = urlParams.get("email") || "N/A";
+            const website = urlParams.get("website") || "N/A";
+
+            const vCardData = `
+                BEGIN:VCARD
+                VERSION:3.0
+                FN:${empName}
+                TITLE:${empDesignation}
+                ORG:${companyName}
+                TEL;TYPE=CELL:${mobileNo}
+                EMAIL:${email}
+                URL:${website}
+                END:VCARD
+            `.trim();
+
+            const blob = new Blob([vCardData], { type: "text/vcard" });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `${empName.replace(/[^a-z0-9]/gi, "_").toLowerCase()}.vcf`;
+            a.click();
+
+            URL.revokeObjectURL(url); // Clean up the URL object
+        }
     </script>
 </body>
 </html>
