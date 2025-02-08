@@ -275,6 +275,7 @@
           border-radius: 18px;
           margin-bottom: 18px;
       }
+      
       .icon {
           width: 45px;
           height: 45px;
@@ -293,14 +294,14 @@
           font-weight: 500;
       }
       .contact-label2 {
-    font-size: 18px;
+    font-size: 16px;
     color: white;
     font-weight: 500;
-    white-space: nowrap;  /* Prevents text from wrapping */
-    overflow: hidden;  /* Hides overflow text */
-    text-overflow: ellipsis;  /* Adds "..." if text is too long */
-    max-width: 150px;  /* Adjust as needed to fit inside the box */
-    display: block;  /* Ensures proper layout */
+    white-space: nowrap;  /* Prevent text wrapping */
+    overflow: hidden;  /* Hide overflowing text */
+    text-overflow: ellipsis;  /* Show "..." if text is too long */
+    max-width: 220px;  /* Adjust width to fit inside the box */
+    display: block;
 }
 
       .action-buttons {
@@ -359,7 +360,7 @@
                 <div class="icon icon-phone"><i class="fas fa-phone"></i></div>
                 <span class="contact-label" id="mobile"></span>
             </div>
-            <div class="contact-item">
+            <div class="contact-item"  onclick="openDialer()">
                 <div class="icon icon-email">  <img src="./images//mail.png" alt="Gmail" width="30" height="30"></div>
                 <span class="contact-label2" id="email"></span>
             </div>
@@ -405,6 +406,15 @@ Website: ${website}
             const mailtoLink = `mailto:${encodeURIComponent(managerEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             window.open(mailtoLink, "_blank");
         }
+        function openDialer() {
+    const mobileNo = urlParams.get("mobile_no") || "";
+    if (mobileNo) {
+        window.location.href = `tel:${mobileNo}`;
+    } else {
+        alert("No mobile number available");
+    }
+}
+
 
         // Function to add details to contacts (download vCard)
         function addToContacts() {
