@@ -382,7 +382,7 @@
             </div>
         </div>
         <div class="action-buttons">
-            <button class="save" onclick="saveToEmail()">
+            <button class="save" onclick="saveToContacts()">
             Save
             <i class="fas fa-save"></i></button>
             <!-- <button class="add-to-contacts" onclick="addToContacts()">Add to Contacts</button> -->
@@ -400,26 +400,39 @@
         document.getElementById("website").textContent = urlParams.get("website") || "N/A";
 
         // Function to save details to email
-        function saveToEmail() {
-            const empName = urlParams.get("emp_name") || "N/A";
-            const empDesignation = urlParams.get("emp_designation") || "N/A";
-            const companyName = urlParams.get("name") || "N/A";
-            const mobileNo = urlParams.get("mobile_no") || "N/A";
-            const email = urlParams.get("email") || "N/A";
-            const website = urlParams.get("website") || "N/A";
-            const managerEmail = "masliuddin.mohammad@seedsworks.com";
-            const subject = `Contact Details for ${empName}`;
-            const body = `
-Name: ${empName}
-Designation: ${empDesignation}
-Company: ${companyName}
-Mobile: ${mobileNo}
-Email: ${email}
-Website: ${website}
-            `.trim(); // Encode newlines for email
-            const mailtoLink = `mailto:${encodeURIComponent(managerEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.open(mailtoLink, "_blank");
-        }
+        function saveToContacts() {
+    const empName = urlParams.get("emp_name") || "N/A";
+    const empDesignation = urlParams.get("emp_designation") || "N/A";
+    const companyName = urlParams.get("name") || "N/A";
+    const mobileNo = urlParams.get("mobile_no") || "N/A";
+    const email = urlParams.get("email") || "N/A";
+    const website = urlParams.get("website") || "N/A";
+
+    // Create vCard (VCF) format
+    const vCardData = `
+BEGIN:VCARD
+VERSION:3.0
+FN:${empName}
+ORG:${companyName}
+TITLE:${empDesignation}
+TEL:${mobileNo}
+EMAIL:${email}
+URL:${website}
+END:VCARD
+    `.trim();
+
+    // Convert vCard data to a Blob
+    const blob = new Blob([vCardData], { type: "text/vcard" });
+
+    // Create a temporary URL for download
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${empName}.vcf`; // Set file name
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
         function openDialer() {
     const mobileNo = urlParams.get("mobile_no") || "";
     if (mobileNo) {
