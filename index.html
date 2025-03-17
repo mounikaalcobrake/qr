@@ -320,16 +320,44 @@ END:VCARD
         function closeDialog() {
             document.getElementById('shareDialog').style.display = 'none';
         }
-        function dialogshare() {
-    // Get values from input fields
+//         function dialogshare() {
+//     // Get values from input fields
+//     const empName = document.getElementById("newname").value || "N/A";
+//     const mobileNo = document.getElementById("mobileno").value || "N/A";
+//     const message = document.getElementById("companyname").value || "N/A";
+//     const email = document.getElementById("email").value || "N/A";
+//     const companyNumber = urlParams.get("mobile_no") || "N/A";
+//     // const companyNumber = "9966456086";  // Company number
+
+//     // Create vCard data (Including company number)
+//     const vCardData = `BEGIN:VCARD
+// VERSION:3.0
+// FN:${empName}
+// ORG:Company
+// TEL;TYPE=WORK,VOICE:${companyNumber}
+// TEL;TYPE=CELL:${mobileNo}
+// EMAIL:${email}
+// NOTE:${message}
+// END:VCARD`;
+
+//     // Convert vCard data to a Blob
+//     const blob = new Blob([vCardData], { type: "text/vcard" });
+
+//     // Create a temporary download link
+//     const link = document.createElement("a");
+//     link.href = URL.createObjectURL(blob);
+//     link.download = `${empName}.vcf`; // File name
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+// }
+async function dialogshare() {
     const empName = document.getElementById("newname").value || "N/A";
     const mobileNo = document.getElementById("mobileno").value || "N/A";
     const message = document.getElementById("companyname").value || "N/A";
     const email = document.getElementById("email").value || "N/A";
+    const companyNumber = urlParams.get("mobile_no") || "N/A";
 
-    const companyNumber = "9966456086";  // Company number
-
-    // Create vCard data (Including company number)
     const vCardData = `BEGIN:VCARD
 VERSION:3.0
 FN:${empName}
@@ -340,16 +368,27 @@ EMAIL:${email}
 NOTE:${message}
 END:VCARD`;
 
-    // Convert vCard data to a Blob
     const blob = new Blob([vCardData], { type: "text/vcard" });
+    const file = new File([blob], `${empName}.vcf`, { type: "text/vcard" });
 
-    // Create a temporary download link
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = `${empName}.vcf`; // File name
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    if (navigator.share) {
+        try {
+            await navigator.share({
+                title: "Share Contact",
+                text: `Here is the contact of ${empName}.`,
+                files: [file]
+            });
+        } catch (error) {
+            console.error("Error sharing:", error);
+        }
+    } else {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `${empName}.vcf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 }
 
     </script>
