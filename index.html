@@ -7,180 +7,220 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
-      * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: 'Poppins', sans-serif;
-      }
-      body {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          min-height: 100vh;
-          background: linear-gradient(135deg, #667eea, #764ba2);
-      }
-      .vcard-container {
-          width: 380px;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 30px;
-          backdrop-filter: blur(25px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          overflow: hidden;
-          box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
-          position: relative;
-      }
-      .header {
-          height: 200px;
-          background: linear-gradient(135deg, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
-          position: relative;
-      }
-      .profile-section {
-          text-align: center;
-          margin-top: -80px;
-          position: relative;
-          z-index: 2;
-      }
-      .profile-image {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          border: 6px solid rgba(255, 255, 255, 0.7);
-          background: #f0f0f0;
-          object-fit: contain;
-      }
-      .profile-info {
-          margin-top: 25px;
-          color: white;
-      }
-      .profile-info h1 {
-          font-size: 32px;
-          font-weight: 700;
-          margin-bottom: 8px;
-      }
-      .profile-info p {
-          font-size: 18px;
-          color: rgba(255, 255, 255, 0.85);
-      }
-      .details-section {
-          padding: 30px;
-          background: rgba(255, 255, 255, 0.15);
-          border-radius: 25px;
-          margin: 25px;
-      }
-      .contact-item {
-          display: flex;
-          align-items: center;
-          padding: 18px;
-          background: rgba(255, 255, 255, 0.25);
-          border-radius: 18px;
-          margin-bottom: 18px;
-      }
-      
-      .icon {
-          width: 45px;
-          height: 45px;
-          background: rgba(255, 255, 255, 0.35);
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-right: 18px;
-          font-size: 22px;
-          color: white;
-      }
-      .contact-label {
-          font-size: 18px;
-          color: white;
-          font-weight: 500;
-      }
-      .contact-label2 {
-    font-size: 16px;
-    color: white;
-    font-weight: 500;
-    white-space: nowrap;  /* Prevent text wrapping */
-    overflow: hidden;  /* Hide overflowing text */
-    text-overflow: ellipsis;  /* Show "..." if text is too long */
-    max-width: 220px;  /* Adjust width to fit inside the box */
-    display: block;
-}
-
-      .action-buttons {
-          display: flex;
-          justify-content: center;
-          margin-top:4px;
-      }
-      .icon-phone {
-    color:#00BFA5; /* Red */
-}
-
-.icon-email img{
-    width: 30px;  /* Adjust size */
-    height: 30px;
-    object-fit: contain;  /* Ensures no background issues */
-    background: transparent;  /* Light Blue */
-}
-
-.icon-website {
-    width: 44px;  /* Adjust size */
-    height: 36px;
-    color: #00BFA5; /* Teal */
-}
-
-      .action-buttons button {
-        display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px; /* Space between text and icon */
-    background: linear-gradient(135deg, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
-    border: none;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 12px 20px;
-    height: 30;
-    width: 200;
-    border-radius:7px;
-    cursor: pointer;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out;
-      }
-      .action-buttons button.send-to-manager {
-          background: #FF9800;
-          color: white;
-      }
-      .action-buttons button.send-to-manager:hover {
-        background: linear-gradient(135deg, rgba(37, 117, 252, 0.9), rgba(106, 17, 203, 0.9));
-        transform: scale(1.05);
-      }
-      .share-button {
-            background: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-        .dialog-container {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #a3c2c2);
         }
-        .dialog-container input {
-            display: block;
+        .vcard-container {
+            width: 380px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+       
+        .header {
+      height: 280px; /* Ensure a minimum height */
+      padding: 20px; /* Adds space inside the header */
+      text-align: center; /* Centers text */
+      display: flex;
+      position: relative;
+      align-items: center; /* Vertically center text */
+      justify-content: center; /* Horizontally center text */
+      background-image: url("./qr/images/cc.png");
+  
+      background-size: contain;
+      /* background-position: center; */
+      background-repeat: no-repeat;
+  }
+  
+  
+        /* .header {
+            height: 200px;
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
+            position: relative;
+        } */
+        .profile-section {
+            text-align: center;
+            margin-top: -160px;
+            /* margin-left: -120; */
+            position: relative;
+            z-index: 2;
+            /* display: flex;
+      align-items: center; /* Aligns everything in a row */
+        }
+        .profile-image {
             width: 100%;
-            margin: 10px 0;
-            padding: 8px;
+            height: 100%;
+            border-radius: 50%;
+            border: 6px solid rgba(255, 255, 255, 0.7);
+            background: #f0f0f0;
+            object-fit: contain;
         }
-    
-  </style>
+        .profile-info {
+            margin-top: 2px;
+            color: white;
+        }
+        .profile-info h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .profile-info p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .details-section {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            margin: 25px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 18px;
+            margin-bottom: 18px;
+        }
+        
+        .icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 18px;
+            font-size: 22px;
+            color: white;
+        }
+        .contact-label {
+            font-size: 18px;
+            color: white;
+            font-weight: 500;
+        }
+        .contact-label2 {
+      font-size: 16px;
+      color: white;
+      font-weight: 500;
+      white-space: nowrap;  /* Prevent text wrapping */
+      overflow: hidden;  /* Hide overflowing text */
+      text-overflow: ellipsis;  /* Show "..." if text is too long */
+      max-width: 220px;  /* Adjust width to fit inside the box */
+      display: block;
+  }
+  
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top:4px;
+        }
+        .icon-phone {
+      color:#00BFA5; /* Red */
+  }
+  
+  .icon-email img{
+      width: 30px;  /* Adjust size */
+      height: 30px;
+      object-fit: contain;  /* Ensures no background issues */
+      background: transparent;  /* Light Blue */
+  }
+  
+  .icon-website {
+      width: 44px;  /* Adjust size */
+      height: 36px;
+      color: #00BFA5; /* Teal */
+  }
+  .image-container {
+      display: flex;
+      align-items: center; /* Ensures both images are aligned */
+      gap: 60px; /* Space between profile and extra image */
+  }
+  
+  .profile-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-left: 140px;
+  }
+  
+  .extra-image {
+      width: 80px;
+      height: 40px;
+      border-radius: 5px; /* Optional styling */
+      margin-top: -60px;
+      /* margin-left: 120; */
+  }
+        .action-buttons button {
+          display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px; /* Space between text and icon */
+      background: linear-gradient(135deg, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 20px;
+      height: 30;
+      width: 200;
+      border-radius:7px;
+      cursor: pointer;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+        }
+        .action-buttons button.send-to-manager {
+            background: #FF9800;
+            color: white;
+        }
+        .action-buttons button.send-to-manager:hover {
+          background: linear-gradient(135deg, rgba(37, 117, 252, 0.9), rgba(106, 17, 203, 0.9));
+          transform: scale(1.05);
+        }
+        .share-button {
+              background: #007bff;
+              color: white;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              margin-top: 20px;
+          }
+          .dialog-container {
+              display: none;
+              position: fixed;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              background: white;
+              padding: 20px;
+              border-radius: 10px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          }
+          .dialog-container input {
+              display: block;
+              width: 100%;
+              margin: 10px 0;
+              padding: 8px;
+          }
+      
+    </style>
+  
 
 </head>
 <body>
@@ -188,7 +228,10 @@
         <div class="header"></div>
         <div class="profile-section">
             <!-- Static Image from Public Folder -->
-            <img id="profile-image" src="./images/seeds.jpeg" alt="Profile" class="profile-image">
+            <div class="image-container">
+                <img id="profile-image" src="./qr/images/employee.png" alt="Profile" class="profile-image">
+                <img id="extra-image" src="./qr/images/Logo.png" alt="Extra Image" class="extra-image">
+            </div>
             <div class="profile-info">
                 <h1 id="name"></h1>
                 <p id="designation"></p>
