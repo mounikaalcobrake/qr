@@ -395,22 +395,29 @@ function dialogshare() {
     const mobileNo = document.getElementById("mobileno").value || "N/A";
     const email = document.getElementById("email").value || "N/A";
     const message = document.getElementById("companyname").value || "N/A";
-    const companyNumber = urlParams.get("mobile_no") || "1234567890"; // Set company mobile number
+    const companyNumber = urlParams.get("mobile_no") || "N/A"; // Set company mobile number
 
-    const vCardData = `BEGIN:VCARD
-VERSION:3.0
-FN:${empName}
-TEL;TYPE=CELL:${mobileNo}
-EMAIL:${email}
-NOTE:${message}
-END:VCARD`;
+//     const vCardData = `BEGIN:VCARD
+// VERSION:3.0
+// FN:${empName}
+// TEL;TYPE=CELL:${mobileNo}
+// EMAIL:${email}
+// NOTE:${message}
+// END:VCARD`;
 
-    // Create Blob for vCard
-    const blob = new Blob([vCardData], { type: "text/vcard" });
-    const fileURL = URL.createObjectURL(blob);
+//     // Create Blob for vCard
+//     const blob = new Blob([vCardData], { type: "text/vcard" });
+//     const fileURL = URL.createObjectURL(blob);
+const whatsappMessage = `*New Contact Details:*
+👤 *Name:* ${empName}
+📞 *Phone:* ${mobileNo}
+📧 *Email:* ${email}
+🏢 *Company:* ${message}
+
+📲 Please save this contact manually.`;
 
     // WhatsApp Share Link
-    const whatsappURL = `https://wa.me/${companyNumber}?text=${encodeURIComponent("Please save this contact.")}`;
+    const whatsappURL = `https://wa.me/${companyNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     
     // Open WhatsApp
     window.location.href = whatsappURL;
