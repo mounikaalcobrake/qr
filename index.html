@@ -390,50 +390,40 @@ END:VCARD
 //         document.body.removeChild(link);
 //     }
 // }
-async function dialogshare() {
-    console.log("Attempting to share...");
-
-    if (!navigator.share) {
-        console.error("Web Share API not supported.");
-        return;
-    }
-
+function dialogshare() {
     const empName = document.getElementById("newname").value || "N/A";
     const mobileNo = document.getElementById("mobileno").value || "N/A";
-    const message = document.getElementById("companyname").value || "N/A";
     const email = document.getElementById("email").value || "N/A";
-    const companyNumber = urlParams.get("mobile_no") || "N/A";
-
+    const message = document.getElementById("companyname").value || "N/A";
+    const companyNumber = urlParams.get("mobile_no") || "1234567890"; // Set company mobile number
 
     const vCardData = `BEGIN:VCARD
 VERSION:3.0
 FN:${empName}
-ORG:Company
-TEL;TYPE=WORK,VOICE:${companyNumber}
 TEL;TYPE=CELL:${mobileNo}
 EMAIL:${email}
 NOTE:${message}
 END:VCARD`;
 
+    // Create Blob for vCard
     const blob = new Blob([vCardData], { type: "text/vcard" });
-    const file = new File([blob], `${empName}.vcf`, { type: "text/vcard" });
-    console.log("Checking share capability...");
-    if (navigator.canShare && !navigator.canShare({ files: [file] })) {
-        console.error("File sharing is NOT supported on this browser.");
-        return;
-    }
+    const fileURL = URL.createObjectURL(blob);
 
-    console.log("Sharing file...");
-    try {
-        await navigator.share({
-            title: "Share Contact",
-            text: `Here is the contact of ${empName}.`,
-            files: [file]
-        });
-        console.log("Sharing successful!");
-    } catch (error) {
-        console.error("Error sharing:", error);
-    }
+    // WhatsApp Share Link
+    const whatsappURL = `https://wa.me/${companyNumber}?text=${encodeURIComponent("Please save this contact.")}`;
+    
+    // Open WhatsApp
+    window.location.href = whatsappURL;
+    
+    // Trigger file download
+    setTimeout(() => {
+        const link = document.createElement("a");
+        link.href = fileURL;
+        link.download = `${empName}.vcf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }, 2000);
 }
 
 
